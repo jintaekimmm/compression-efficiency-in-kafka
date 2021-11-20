@@ -136,12 +136,12 @@ ProtoBuffer 데이터는 ProtoBuffer를 기준으로 비교
 
 | Compression Codec | Duration Ratio | Producer CPU Ratio | Kafka CPU Ratio | Traffic Ratio | Ratio SUM|
 | -------------- |:-----:|:----:|:----:|:----:|:----:|
-| Json(Uncomp)   | 1.0 | 1.0 | 1.0 | 1.0 | 4.0 |
+| Json(Uncomp)   | 1.0 | 1.0 | 1.0 | 1.0 | `4.0` |
 | Json + Gzip    | 1.4 | 1.3 | 0.5 | 0.1 | 3.2 |
 | Json + Lz4     | 0.8 | 1.3 | 0.9 | 0.3 | 3.3 |
 | Json + Snappy  | 0.8 | 1.1 | 0.6 | 0.3 | `2.8` |
 | Json + Zstd    | 0.6 | 1.5 | 0.8 | 0.2 | 3.1 |
-| ProtoBuffer    | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
+| ProtoBuffer    | 1.0 | 1.0 | 1.0 | 1.0 | `4.0` |
 | PB + Gzip      | 1.7 | 1.2 | 0.6 | 0.2 | 3.7 |
 | PB + Lz4       | 0.9 | 1.2 | 1.2 | 0.5 | 3.8 |
 | PB + Snappy    | 1.0 | 1.0 | 0.9 | 0.5 | `3.4` |
