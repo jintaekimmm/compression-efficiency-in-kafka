@@ -55,6 +55,8 @@ saramaCfg.Producer.Flush.Frequency = time.Second * 3
 CSV 파일 사용
 Rows : 50,000,000
 CSV Size :  6.5GB
+
+개별 레코드는 다른 값을 가진다
 ```
 Output Data Json Format
 ```json
