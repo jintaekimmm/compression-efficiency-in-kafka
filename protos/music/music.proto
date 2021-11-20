@@ -1,0 +1,27 @@
+syntax = "proto3";
+package some_body;
+
+option go_package = "./";
+
+message Music {
+  string buy_seq = 1;
+  string product_cd = 2;
+  string buy_id = 3;
+  string product_seq = 4;
+  string product_nm = 5;
+  string buy_nm = 6;
+  string before_my_money = 7;
+  string send_status = 8;
+  string product_cnt = 9;
+  string send_cnt = 10;
+  string deny_cnt = 11;
+  string receive_cnt = 12;
+  string send_tm = 13;
+  string product_my_money = 14;
+  string buy_my_money = 15;
+  string discount_rate = 16;
+  string buy_ip_addr = 17;
+  string buy_login_id = 18;
+  string buy_login_name = 19;
+  string receive_tm = 20;
+}
