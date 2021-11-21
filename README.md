@@ -183,7 +183,7 @@ Producer에서 Kafka로 데이터를 저장할때의 compression type별 리소�
 
 
 ### 7. ProtoBuf + Gzip
-![pb-gzip](![img.png](img.png))
+![pb-gzip](https://user-images.githubusercontent.com/31076511/142730708-64304d71-f593-4a06-ab83-d0d4b2be8d84.png)
 
 
 ### 8. ProtoBuf+ Lz4
