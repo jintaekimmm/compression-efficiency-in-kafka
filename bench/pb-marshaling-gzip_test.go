@@ -1,6 +1,7 @@
 package bench
 
 import (
+	"fmt"
 	"github.com/99-66/compression-efficiency-in-kafka/kafka"
 	"github.com/Shopify/sarama"
 	"log"
@@ -9,33 +10,36 @@ import (
 )
 
 func BenchmarkProducerProtoBufferAndGzip(t *testing.B) {
-	topic := "pb-marshaling-and-gzip"
+	topicBase := "pb-marshaling-and-gzip"
 
-	filename := "./samples/data_50m.csv"
+	for _, sample := range samples {
+		func() {
+			filename := fmt.Sprintf("./samples/%s.csv", sample)
+			topic := fmt.Sprintf("%s-%s", topicBase, sample)
+			file, err := os.Open(filename)
+			if err != nil {
+				log.Fatalf("Couldn't open the csv file %s\n", err)
+			}
+			defer file.Close()
 
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatalf("Couldn't open the csv file %s\n", err)
+			// Initializing Kafka Producer
+			p, err := kafka.NewProducer("gzip")
+			if err != nil {
+				panic(err)
+			}
+			defer p.Close()
+
+			for r := range generateProtoBufferSample(file) {
+				if r.Err != nil {
+					log.Printf("item failed marshaling. %v\n", err)
+					continue
+				}
+				msg := &sarama.ProducerMessage{
+					Topic: topic,
+					Value: sarama.ByteEncoder(r.Bytes),
+				}
+				p.Input() <- msg
+			}
+		}()
 	}
-	defer file.Close()
-
-	// Initializing Kafka Producer
-	p, err := kafka.NewProducer("gzip")
-	if err != nil {
-		panic(err)
-	}
-	defer p.Close()
-
-	for r := range generateProtoBufferSample(file) {
-		if r.Err != nil {
-			log.Printf("item failed marshaling. %v\n", err)
-			continue
-		}
-		msg := &sarama.ProducerMessage{
-			Topic: topic,
-			Value: sarama.ByteEncoder(r.Bytes),
-		}
-		p.Input() <- msg
-	}
-
 }

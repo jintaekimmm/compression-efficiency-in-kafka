@@ -130,3 +130,12 @@ func generateProtoBufferSample(r io.Reader) (ch chan MusicData) {
 
 	return
 }
+
+var samples = []string{
+	"data_10k",
+	"data_1m",
+	"data_5m",
+	"data_10m",
+	"data_50m",
+	"data_100m",
+}
